@@ -1,1 +1,1 @@
-osan 0 tehtävien vastaukset
+Osan 0 tehtävien vastaukset.

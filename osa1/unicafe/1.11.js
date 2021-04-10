@@ -12,16 +12,24 @@ const getWeightedValue = (weight, value) => {
 }
 
 const Statistics = (props) => {
-  return (
-    <div>
-      <Display text={props.statistics.good_text} value={props.good} />
-      <Display text={props.statistics.neutral_text} value={props.neutral} />
-      <Display text={props.statistics.bad_text} value={props.bad} />
-      <Display text={props.statistics.all_text} value={props.all} />
-      <Display text={props.statistics.average_text} value={props.statistics.average} />
-      <Display text={props.statistics.positive_text} value={props.statistics.positive} percent={props.statistics.percent} />
-    </div>
-    )
+    if (props.all > 0) {
+        return (
+            <div>
+              <Display text={props.statistics.good_text} value={props.good} />
+              <Display text={props.statistics.neutral_text} value={props.neutral} />
+              <Display text={props.statistics.bad_text} value={props.bad} />
+              <Display text={props.statistics.all_text} value={props.all} />
+              <Display text={props.statistics.average_text} value={props.statistics.average} />
+              <Display text={props.statistics.positive_text} value={props.statistics.positive} percent={props.statistics.percent} />
+            </div>
+            )
+    } else {
+        return (
+            <div>
+                <Display text={"No feedback given"} />
+            </div>
+        )
+    }
   }
   
 

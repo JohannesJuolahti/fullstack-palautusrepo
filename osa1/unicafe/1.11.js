@@ -1,11 +1,19 @@
 import React, { useState } from 'react'
-const Display = props => <div>{props.text} {props.value} {props.percent}</div>
+const Display = props => <div>{props.text}</div>
 
 const Button = (props) => (
   <button onClick={props.handleClick}>
     {props.text}
   </button>
 )
+
+const StatisticLine = (props) => {
+  return (
+    <div>
+      {props.text} {props.value} {props.percent}
+    </div>
+    )
+  }
 
 const getWeightedValue = (weight, value) => {
   return weight * value
@@ -14,20 +22,38 @@ const getWeightedValue = (weight, value) => {
 const Statistics = (props) => {
     if (props.all > 0) {
         return (
-            <div>
-              <Display text={props.statistics.good_text} value={props.good} />
-              <Display text={props.statistics.neutral_text} value={props.neutral} />
-              <Display text={props.statistics.bad_text} value={props.bad} />
-              <Display text={props.statistics.all_text} value={props.all} />
-              <Display text={props.statistics.average_text} value={props.statistics.average} />
-              <Display text={props.statistics.positive_text} value={props.statistics.positive} percent={props.statistics.percent} />
-            </div>
+          <table>
+            <tbody>
+              <tr>
+                <td><StatisticLine text={props.statistics.good_text} /></td>
+                <td><StatisticLine text={props.good} /></td>
+              </tr>
+              <tr>
+                <td><StatisticLine text={props.statistics.neutral_text} /></td>
+                <td><StatisticLine text={props.neutral} /></td>
+              </tr>
+              <tr>
+                <td><StatisticLine text={props.statistics.bad_text} /></td>
+                <td><StatisticLine text={props.bad} /></td>
+              </tr>
+              <tr>
+                <td><StatisticLine text={props.statistics.all_text} /></td>
+                <td><StatisticLine text={props.all} /></td>
+              </tr>
+              <tr>
+                <td><StatisticLine text={props.statistics.average_text} /></td>
+                <td><StatisticLine text={props.statistics.average} /></td>
+              </tr>
+              <tr>
+                <td><StatisticLine text={props.statistics.positive_text} /></td>
+                <td><StatisticLine text={props.statistics.positive} percent={props.statistics.percent} /></td>
+              </tr>
+            </tbody>
+          </table>
             )
     } else {
         return (
-            <div>
-                <Display text={"No feedback given"} />
-            </div>
+            <Display text={"No feedback given"} />
         )
     }
   }

@@ -11,9 +11,9 @@ const App = () => {
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
   const [ newFilter, setNewFilter ] = useState('')
-  const [showAll, setShowAll] = useState(true)
+  const [showAll, setShowAll] = useState(false)
 
-  const personsToShow = showAll ? persons : persons.filter(person => newFilter)
+  const personsToShow = showAll ? persons : persons.filter(person => person.name === newFilter)
 
   const addNameAndNumber = (event) => {
     event.preventDefault()

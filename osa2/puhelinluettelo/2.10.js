@@ -11,9 +11,10 @@ const App = () => {
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
   const [ newFilter, setNewFilter ] = useState('')
-  const [showAll, setShowAll] = useState(false)
+  const [showAll] = useState('')
 
-  const personsToShow = showAll ? persons : persons.filter(person => person.name === newFilter)
+  const personsToShow = showAll ? persons : persons.filter(person => 
+    person.name.toLowerCase().includes(newFilter.toLowerCase()))
 
   const addNameAndNumber = (event) => {
     event.preventDefault()

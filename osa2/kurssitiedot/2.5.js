@@ -2,15 +2,19 @@ import React from 'react'
 
 const Header = ({ course }) => {
   return (
-    <h1>{course.name}</h1>
+    <h2>{course.name}</h2>
   )
 }
 
 const Total = ({ course }) => {
+  var excersizes = []
   let sum = 0
+  const reducer = (accumulator, currentValue) => accumulator + currentValue
 
-   course.parts.map(part => 
-    sum += part.exercises)
+  course.parts.map(part =>
+    excersizes.push(part.exercises))
+  
+  sum = excersizes.reduce(reducer)
 
   return (
     <p><b>Total of {sum} exercises</b></p>
@@ -49,37 +53,15 @@ const Course = ({ course }) => {
   )
 }
 
-const App = () => {
-  const course = {
-    name: 'Half Stack application development',
-    id: 1,
-    parts: [
-      {
-        name: 'Fundamentals of React',
-        exercises: 10,
-        id: 1
-      },
-      {
-        name: 'Using props to pass data',
-        exercises: 7,
-        id: 2
-      },
-      {
-        name: 'State of a component',
-        exercises: 14,
-        id: 3
-      },
-      {
-        name: 'Redux',
-        exercises: 11,
-        id: 4
-      }
-    ]
-  }
+const App = (props) => {
+  const { courses } = props
 
   return (
     <div>
-      <Course course={course} />
+      <h1>Web development curriculum</h1>
+      {courses.map(course => 
+        <Course course={course} key={course.id} />
+      )}
     </div>
   )
 }

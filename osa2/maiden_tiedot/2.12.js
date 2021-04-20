@@ -12,7 +12,7 @@ const Filter = (props) => {
 const Country = (props) => {
   return (
     <div>
-      <br />{props.name} <h1>{props.nameAsHeader}</h1>
+      {props.name}
     </div>
   )
 }
@@ -20,6 +20,7 @@ const Country = (props) => {
 const CountryInfo = (props) => {
   return (
     <div>
+      <h1>{props.nameAsHeader}</h1>
       <p>Capital: {props.capital}</p>
       <p>Capital: {props.population}</p>
       <h2>Languages</h2>
@@ -50,9 +51,9 @@ const Countries = (props) => {
     let onlyCountry = props.countriesToShow[0]
     return (
       <div>
-        <Country key={onlyCountry['name']} nameAsHeader={onlyCountry['name']}/>
         <CountryInfo capital={onlyCountry['capital']} population={onlyCountry['population']}
-        languages={onlyCountry['languages']} flag={onlyCountry['flag']}/>
+        languages={onlyCountry['languages']} flag={onlyCountry['flag']} 
+        nameAsHeader={onlyCountry['name']}/>
       </div>
     )
   }

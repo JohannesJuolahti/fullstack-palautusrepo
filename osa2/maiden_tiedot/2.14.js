@@ -84,7 +84,9 @@ const Countries = (props) => {
       </div>
     )
   }
-  return props.countriesToShow.length === 0 ? <p>No countries found, use another filter.</p> : null
+  return props.countriesToShow.length === 0 && props.newFilter !== '' 
+  ? <p>No countries found, use another filter.</p>
+  : <p>Loading...</p>
 }
 
 const App = () => {
@@ -112,7 +114,7 @@ const App = () => {
     <div>
       
       <Filter newFilter={newFilter} handleFilterChange={handleFilterChange}/>
-      <Countries countriesToShow={countriesToShow}/>
+      <Countries countriesToShow={countriesToShow} newFilter={newFilter}/>
 
     </div>
   )

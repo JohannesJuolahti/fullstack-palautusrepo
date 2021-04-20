@@ -84,7 +84,7 @@ const Countries = (props) => {
       </div>
     )
   }
-  return (<p>Loading countries...</p>)
+  return props.countriesToShow.length === 0 ? <p>No countries found, use another filter.</p> : null
 }
 
 const App = () => {

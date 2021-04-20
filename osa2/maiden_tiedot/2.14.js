@@ -12,22 +12,22 @@ const Filter = (props) => {
 const Weather = ({capital}) => {
   const [weather, setWeather] = useState({location:{}, current: {}});
   const [loading, setLoading] = useState(true);
-  const key = process.env.REACT_APP_WEATHERSTACK_CODE
-  const url = `http://api.weatherstack.com/current?access_key=${key}&query=${capital}`
 
   useEffect(() => {
+    const key = process.env.REACT_APP_WEATHERSTACK_CODE
+    const url = `http://api.weatherstack.com/current?access_key=${key}&query=${capital}`
     axios.get(url)
     .then(response => {
       setLoading(false);
       setWeather(response.data)
     })
-  }, [])
+  }, [capital])
 
   return loading ? <p>Loading...</p> : (
     <div>
       <h2>Weather in {weather.location.name}</h2>
       <p><b>Temperature:</b> {weather.current.temperature} Celcius</p>
-      <img src = {weather.current.weather_icons} />
+      <img src = {weather.current.weather_icons} alt='weather'/>
       <p><b>Wind:</b> {weather.current.wind_speed} kph direction {weather.current.wind_dir}</p>
     </div>
   )

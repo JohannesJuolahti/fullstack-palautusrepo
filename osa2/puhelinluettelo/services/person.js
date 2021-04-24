@@ -11,7 +11,9 @@ const create = newObject => {
   return request.then(response => response.data)
 }
 
+const personService = {
+    getAll,
+    create,
+  };
 
-export default { 
-     getAll, create 
-}
+  export default personService;

@@ -3,11 +3,11 @@ import Person from './Person'
 
 const Persons= (props) => {
   return (
-    <ul>
+    <div>
         {props.personsToShow.map(person =>
           <Person key={person.name} person={person}/>
         )}
-    </ul>
+    </div>
   )
 }
 

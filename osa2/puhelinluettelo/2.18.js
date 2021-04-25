@@ -32,6 +32,7 @@ const App = () => {
     }
 
     let names = []
+    let updateNumber = false
 
     persons.map(person =>
       names.push(person.name))
@@ -42,7 +43,7 @@ const App = () => {
         .then(returnedPerson => {
         setPersons(persons.concat(returnedPerson))
       })
-    : window.alert(`${newName} has already been added to the phonebook.`)
+    : updateNumber = window.confirm(`${newName} has already been added to the phonebook. Replace the old number with a new one?`)
     setNewName('')
     setNewNumber('')
   }

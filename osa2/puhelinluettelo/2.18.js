@@ -44,6 +44,12 @@ const App = () => {
         setPersons(persons.concat(returnedPerson))
       })
     : updateNumber = window.confirm(`${newName} has already been added to the phonebook. Replace the old number with a new one?`)
+    
+    if (updateNumber) {
+    personService
+      .update(names.indexOf(newName) + 1, {'name': newName, 'number': newNumber})
+    }
+
     setNewName('')
     setNewNumber('')
   }

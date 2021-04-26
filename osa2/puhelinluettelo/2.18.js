@@ -3,6 +3,8 @@ import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
 import personService from './services/person'
+import Notification from './components/Notification'
+import './index.css'
 
 const App = () => {
   const [ persons, setPersons] = useState([])
@@ -10,6 +12,7 @@ const App = () => {
   const [ newNumber, setNewNumber ] = useState('')
   const [ newFilter, setNewFilter ] = useState('')
   const [showAll] = useState('')
+  const [errorMessage, setErrorMessage] = useState(null)
 
 
   useEffect(() => {
@@ -37,17 +40,28 @@ const App = () => {
     persons.map(person =>
       names.push(person.name))
 
-    names.indexOf(newName) === -1 ? 
-    personService
-      .create(personObject)
-        .then(returnedPerson => {
-        setPersons(persons.concat(returnedPerson))
-      })
-    : updateNumber = window.confirm(`${newName} has already been added to the phonebook. Replace the old number with a new one?`)
+    if (names.indexOf(newName) === -1) {
+      personService
+        .create(personObject)
+          .then(returnedPerson => {
+          setPersons(persons.concat(returnedPerson))
+        })
+        setErrorMessage(`${newName} added to the phonebook!`)
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 2000)
+      } else {
+        updateNumber = window.confirm(`${newName} has already been added to the phonebook. Replace the old number with a new one?`)
+      }
     
     if (updateNumber) {
     personService
       .update(names.indexOf(newName) + 1, {'name': newName, 'number': newNumber})
+      
+      setErrorMessage(`Number for ${newName} was succesfully changed!`)
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 2000)
     }
 
     setNewName('')
@@ -68,8 +82,8 @@ const App = () => {
 
   return (
     <div>
+      <Notification message={errorMessage} />
       <h2>Phonebook</h2>
-      
       <Filter newFilter={newFilter} handleFilterChange={handleFilterChange}/>
       
       <h3>Add a new</h3>

@@ -2,6 +2,8 @@ const { response } = require('express')
 const express = require('express')
 const app = express()
 app.use(express.json())
+app.set('view engine', 'pug')
+
 
 let persons = [
     { 
@@ -28,6 +30,12 @@ let persons = [
 
   app.get('/api/persons', (request, response) => {
     response.json(persons)
+  })
+
+  app.get('/info', (request, response) => {
+    const sizeOfPersons = persons.length
+    const timeStamp = new Date().toISOString() + " (UTC)"
+    response.render('info', { size: sizeOfPersons, timeStamp: timeStamp})
   })
   
   const PORT = 3001

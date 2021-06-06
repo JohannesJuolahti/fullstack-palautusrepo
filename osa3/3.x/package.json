@@ -1,0 +1,20 @@
+{
+    "name": "osa3-sovellus",
+    "version": "0.0.1",
+    "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+    "main": "index.js",
+    "scripts": {
+      "start": "node index.js",
+      "dev": "nodemon index.js",
+      "test": "\"echo \\\"Error: no test specified\\\" && exit 1\""
+    },
+    "author": "Johannes Juolahti",
+    "license": "ISC",
+    "dependencies": {
+      "express": "^4.17.1"
+    },
+    "devDependencies": {
+      "nodemon": "^2.0.7"
+    }
+  }
+  

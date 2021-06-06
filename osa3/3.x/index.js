@@ -28,6 +28,12 @@ let persons = [
       }
   ]
 
+  function generateId(min, max) {
+    min = Math.ceil(min)
+    max = Math.floor(max)
+    return Math.floor(Math.random() * (max - min) + min)
+  }
+
   app.get('/api/persons', (request, response) => {
     response.json(persons)
   })
@@ -47,6 +53,20 @@ let persons = [
         response.status(404).end()
       }
 
+  })
+
+  app.post('/api/persons', (request, response) => {
+    const body = request.body
+  
+    const person = {
+      id: generateId(5, 60000),
+      name: body.name,
+      number: body.number
+    }
+  
+    persons = persons.concat(person)
+  
+    response.json(person)
   })
 
   app.delete('/api/persons/delete/:id', (request, response) => {

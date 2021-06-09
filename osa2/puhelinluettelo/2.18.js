@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
-import Persons from './components/Persons'
+import Person from './components/Person'
 import personService from './services/person'
 import Notification from './components/Notification'
 import './index.css'
@@ -80,6 +80,14 @@ const App = () => {
     setNewFilter(event.target.value)
   }
 
+  const handleClickWithConfirm = (personName, personId) => {
+    let result = false
+    result = window.confirm(`Are you sure you want to delete ${personName}?`);
+    if (result) {
+      personService.del(personId)
+      setPersons(persons.filter(p => p.id !== personId))
+    }
+  }
   return (
     <div>
       <Notification message={errorMessage} />
@@ -94,8 +102,12 @@ const App = () => {
 
       <h3>Numbers</h3>
       
-      <Persons personsToShow={personsToShow}/>
+      {personsToShow.map(person =>
+          <Person key={person.name} person={person} id = {person.id} 
+          handleClickWithConfirm={() => handleClickWithConfirm(person.name, person.id)}/> 
+        )}
       
+
     </div>
   )
 

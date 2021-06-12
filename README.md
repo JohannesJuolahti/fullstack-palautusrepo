@@ -1,6 +1,6 @@
 # Full Stack 2021
 
-Node.js palvelin herokussa: https://limitless-castle-98149.herokuapp.com
+Puhelinluettelo: https://limitless-castle-98149.herokuapp.com
 
 Lorem ipsum jne... +
 

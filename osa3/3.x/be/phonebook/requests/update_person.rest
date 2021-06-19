@@ -1,0 +1,8 @@
+PUT http://localhost:3001/api/persons/60cccfe1c7f71c4ae57f579d
+Content-Type: application/json
+
+{
+    "name": "Rami Alatalo",
+    "number": "0501234675873",
+    "id": "60cccfe1c7f71c4ae57f579d"
+}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 const Blog = ({ blog, addLikes, user, deleteBlog }) => {
+
   const blogStyle = {
     paddingTop: 10,
     paddingLeft: 2,
@@ -8,7 +9,10 @@ const Blog = ({ blog, addLikes, user, deleteBlog }) => {
     marginBottom: 5
   }
 
+
   const [viewMore, setViewMore] = useState(false)
+  const hideWhenVisible = { display: viewMore ? 'none' : '' }
+  const showWhenVisible = { display: viewMore ? '' : 'none' }
   const [handledBlog, setHandledBlog] = useState('')
   const [likes, setLikes] = useState(0)
 
@@ -26,39 +30,36 @@ const Blog = ({ blog, addLikes, user, deleteBlog }) => {
 
   const incrementLikes = (event) => {
     event.preventDefault()
-    setLikes(handledBlog.likes + 1)
-    
-    handledBlog.likes = handledBlog.likes + 1
+    setLikes(blog.likes + 1)
 
-    addLikes(handledBlog.id, handledBlog)
+    blog.likes = blog.likes + 1
+
+    addLikes(blog.id, blog)
   }
 
-  if (viewMore === false) {
-    return (
-      <div style={blogStyle}>
-        <div key={blog.title}>
-          {blog.title} {blog.author} <button onClick={toggleVisibility}>View</button>
+  return (
+    <div style={blogStyle}>
+      <div style={hideWhenVisible}>
+        <div id="blogInformation">
+          {blog.title} {blog.author} <button onClick={toggleVisibility} id="viewButton">View</button>
         </div>
       </div>
-      )
-    }
-    if (viewMore === true) {
-    return (
-    <div style={blogStyle}>
-      <div key={blog.title}>
-        {blog.title}<button onClick={toggleVisibility}>Hide</button>
-      </div>
+      <div style={showWhenVisible} className="togglableContent">
         <div>
-          {blog.url}<br></br>
-          Likes: {blog.likes === 0 ? likes : blog.likes}<button onClick={incrementLikes}>Like</button><br></br>
+          {blog.title}<button onClick={toggleVisibility}>Hide</button>
+        </div>
+        <div>
+          <span>{blog.url}<br></br></span>
+          <span>Likes: {blog.likes === 0 ? likes : blog.likes}</span><button onClick={incrementLikes}
+            className="addLikesButton">Like</button><br></br>
           {blog.author}
         </div>
-        {handledBlog.user && handledBlog.user.id === user.id ? 
-        <button onClick={removeBlog}>REMOVE</button>
-        : ''}
+        {handledBlog.user && handledBlog.user.id === user.id ?
+          <button onClick={removeBlog} id="removeButton">REMOVE</button>
+          : ''}
+      </div>
     </div>
-    )
-  }
+  )
 }
 
 export default Blog

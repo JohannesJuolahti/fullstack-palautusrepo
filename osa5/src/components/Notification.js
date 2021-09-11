@@ -1,14 +1,15 @@
 const Notification = ({ message, isError }) => {
-    let classNm = isError ? "error" : "successMessage"
-    if (message === null) {
-      return null
-    }
-  
-    return (
-      <div className={classNm}>
-        {message}
-      </div>
-    )
+  let classNm = isError ? 'error' : 'successMessage'
+  if (message === null) {
+    return null
   }
-  
-  export default Notification
+
+  return (
+    // eslint-disable-next-line react/react-in-jsx-scope
+    <div className={classNm}>
+      {message}
+    </div>
+  )
+}
+
+export default Notification

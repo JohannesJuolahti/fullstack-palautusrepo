@@ -12,6 +12,7 @@ const requestLogger = (request, response, next) => {
 }
 
 const unknownEndpoint = (request, response) => {
+  console.log(config.NODE_ENV)
   response.status(404).send({ error: 'unknown endpoint' })
 }
 
